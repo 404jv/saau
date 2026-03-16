@@ -12,6 +12,7 @@ async function bootstrap() {
     .setTitle('SAAU API')
     .setDescription('SAAU ONG API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

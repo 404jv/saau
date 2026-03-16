@@ -1,4 +1,6 @@
 import 'dotenv/config';
+
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-secret';
 import { PrismaClient } from '@prisma/client';
 import { randomUUID } from 'node:crypto';
 import { execSync } from 'node:child_process';
