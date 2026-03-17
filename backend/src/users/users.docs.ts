@@ -1,5 +1,5 @@
 import { applyDecorators } from '@nestjs/common';
-import { ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiBody, ApiResponse, ApiQuery } from '@nestjs/swagger';
 
 export function ApiCreateUser() {
   return applyDecorators(
@@ -42,5 +42,17 @@ export function ApiUpdateUser() {
     ApiResponse({ status: 403, description: 'Forbidden' }),
     ApiResponse({ status: 404, description: 'User not found' }),
     ApiResponse({ status: 409, description: 'Email already in use' }),
+  );
+}
+
+export function ApiListUsers() {
+  return applyDecorators(
+    ApiOperation({ summary: 'List users (admin only)' }),
+    ApiQuery({ name: 'query', required: false, type: String, description: 'Search by name or email' }),
+    ApiQuery({ name: 'page', required: false, type: Number, description: 'Page number (default: 1)' }),
+    ApiQuery({ name: 'limit', required: false, type: Number, description: 'Items per page (default: 20, max: 100)' }),
+    ApiResponse({ status: 200, description: 'Users listed successfully' }),
+    ApiResponse({ status: 401, description: 'Not authenticated' }),
+    ApiResponse({ status: 403, description: 'Forbidden — admin only' }),
   );
 }

@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  Get,
   Param,
   Patch,
   Post,
+  Query,
   Req,
   UseGuards,
   UsePipes,
@@ -15,15 +17,34 @@ import { createUserBody } from './dtos/create-user.dto.js';
 import type { CreateUserDto } from './dtos/create-user.dto.js';
 import { updateUserBody } from './dtos/update-user.dto.js';
 import type { UpdateUserDto } from './dtos/update-user.dto.js';
+import { listUsersQuery } from './dtos/list-users.dto.js';
+import type { ListUsersQuery } from './dtos/list-users.dto.js';
 import { ZodValidationPipe } from '../common/pipes/zod-validation-pipe.js';
 import { AuthGuard } from '../auth/auth.guard.js';
-import { ApiCreateUser, ApiUpdateUser } from './users.docs.js';
+import { ApiCreateUser, ApiUpdateUser, ApiListUsers } from './users.docs.js';
 import { ApiError } from '../common/errors/api-error.js';
 
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  @Get()
+  @ApiListUsers()
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  async list(
+    @Query(new ZodValidationPipe(listUsersQuery)) query: ListUsersQuery,
+    @Req() req: Request,
+  ) {
+    const user = req['user'];
+
+    if (!user.isAdmin) {
+      throw new ApiError(403, 'Acesso restrito a administradores');
+    }
+
+    return this.usersService.list(query);
+  }
 
   @Post()
   @ApiCreateUser()
