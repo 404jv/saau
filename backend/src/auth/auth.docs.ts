@@ -19,3 +19,21 @@ export function ApiLogin() {
     ApiResponse({ status: 401, description: 'Invalid credentials' }),
   );
 }
+
+export function ApiGoogleRedirect() {
+  return applyDecorators(
+    ApiOperation({ summary: 'Redirect to Google consent screen' }),
+    ApiResponse({ status: 302, description: 'Redirects to Google OAuth' }),
+  );
+}
+
+export function ApiGoogleCallback() {
+  return applyDecorators(
+    ApiOperation({ summary: 'Google OAuth callback' }),
+    ApiResponse({ status: 200, description: 'Google login successful' }),
+    ApiResponse({
+      status: 401,
+      description: 'Google authentication failed or cancelled',
+    }),
+  );
+}
