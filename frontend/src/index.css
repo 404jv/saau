@@ -1,4 +1,6 @@
-:root {
+@import "tailwindcss";
+
+@theme {
   --font-main: 'Yusei Magic', cursive;
   --color-dark: #1E1E1E;
   --color-red: #FF3131;
@@ -6,26 +8,15 @@
   --color-teal: #08BAB2;
   --color-yellow: #FFDE59;
   --color-purple: #5E17EB;
+  --color-google: #4285F4;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-main);
-  background-color: #fff;
-  color: var(--color-dark);
-  min-height: 100vh;
-}
-
-#root {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@layer base {
+  body {
+    font-family: var(--font-main);
+    @apply bg-white text-dark min-h-screen;
+  }
+  #root {
+    @apply min-h-screen flex items-center justify-center;
+  }
 }

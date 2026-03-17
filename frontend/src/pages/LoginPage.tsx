@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './LoginPage.css'
 
 function LoginPage() {
   const [isRegister, setIsRegister] = useState(false)
@@ -10,46 +9,46 @@ function LoginPage() {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-title">
-        <img src="/assets/info.svg" alt="Info" className="info-icon" />
-        <h1>{isRegister ? 'CRIAR SUA CONTA' : 'ENTRAR NA SUA CONTA'}</h1>
+    <div className="flex flex-col items-center py-8 sm:py-15 px-5 w-full max-w-[900px]">
+      <div className="flex items-center gap-2 mb-8">
+        <img src="/assets/info.svg" alt="Info" className="w-9 h-9" />
+        <h1 className="font-main text-2xl sm:text-[32px] text-red m-0">{isRegister ? 'CRIAR SUA CONTA' : 'ENTRAR NA SUA CONTA'}</h1>
       </div>
 
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="w-full max-w-[440px] flex flex-col gap-5 mb-4" onSubmit={handleSubmit}>
         {isRegister && (
-          <div className="field">
-            <label htmlFor="name">Nome:</label>
-            <input id="name" type="text" name="name" />
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="name" className="text-lg font-bold text-dark">Nome:</label>
+            <input id="name" type="text" name="name" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
           </div>
         )}
-        <div className="field">
-          <label htmlFor="email">E-mail:</label>
-          <input id="email" type="email" name="email" />
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="email" className="text-lg font-bold text-dark">E-mail:</label>
+          <input id="email" type="email" name="email" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
         </div>
-        <div className="field">
-          <label htmlFor="password">Senha:</label>
-          <input id="password" type="password" name="password" />
+        <div className="flex flex-col gap-1.5">
+          <label htmlFor="password" className="text-lg font-bold text-dark">Senha:</label>
+          <input id="password" type="password" name="password" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
         </div>
-        <button type="submit" className="btn-submit">ENVIAR</button>
+        <button type="submit" className="self-center mt-2 py-3.5 px-14 bg-red text-white border-none rounded-lg font-main text-lg cursor-pointer transition-opacity hover:opacity-85">ENVIAR</button>
       </form>
 
-      <p className="toggle-link">
+      <p className="mt-2 text-lg text-dark text-center">
         {isRegister ? (
           <>
-            Já tem conta?{' '}
-            <button onClick={() => setIsRegister(false)}>Entre aqui.</button>
+            Ja tem conta?{' '}
+            <button onClick={() => setIsRegister(false)} className="bg-none border-none text-teal font-main text-sm cursor-pointer underline hover:text-yellow">Entre aqui.</button>
           </>
         ) : (
           <>
             Não tem conta?{' '}
-            <button onClick={() => setIsRegister(true)}>Cadastre-se aqui.</button>
+            <button onClick={() => setIsRegister(true)} className="bg-none border-none text-teal font-main text-sm cursor-pointer underline hover:text-yellow">Cadastre-se aqui.</button>
           </>
         )}
       </p>
 
-      <a className="btn-google" href="/api/v1/auth/google">
-        <svg viewBox="0 0 24 24">
+      <a className="flex items-center justify-center gap-2.5 mt-5 py-3 px-4 sm:px-8 bg-google text-white border-none rounded-lg font-main text-base cursor-pointer transition-opacity no-underline max-w-[440px] w-full hover:opacity-85" href="/api/v1/auth/google">
+        <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] bg-white rounded-full p-0.5">
           <path
             fill="#4285F4"
             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
@@ -70,20 +69,20 @@ function LoginPage() {
         Login com Google
       </a>
 
-      <div className="dogs-section">
-        <div className="dogs-title-wrapper">
-          <h2 className="dogs-title">A GENTE TE AGUARDA</h2>
-          <img src="/assets/chewing-bone-for-dog 1.svg" alt="" className="bone-icon" />
+      <div className="w-full flex flex-col items-center mt-8 sm:mt-15">
+        <div className="flex items-center mb-6">
+          <img src="/assets/chewing-bone-for-dog 1.svg" alt="" className="w-22 h-auto rotate-10" />
+          <h2 className="font-main text-xl sm:text-[28px] text-red">A GENTE TE AGUARDA</h2>
         </div>
-        <div className="dogs-gallery">
-          <div className="dog-card dog-card--teal">
-            <img src="/assets/dog-4.png" alt="Cachorro" />
+        <div className="flex flex-wrap gap-4 sm:gap-6 justify-center">
+          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-teal">
+            <img src="/assets/dog-4.png" alt="Cachorro" className="w-full h-full object-cover" />
           </div>
-          <div className="dog-card dog-card--yellow">
-            <img src="/assets/dog-2.png" alt="Cachorro" />
+          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-yellow">
+            <img src="/assets/dog-2.png" alt="Cachorro" className="w-full h-full object-cover" />
           </div>
-          <div className="dog-card dog-card--purple">
-            <img src="/assets/dog-3.png" alt="Cachorro" />
+          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-purple">
+            <img src="/assets/dog-3.png" alt="Cachorro" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
