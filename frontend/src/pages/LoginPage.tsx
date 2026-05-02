@@ -1,10 +1,55 @@
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import LoginForm from '../components/LoginForm'
 import GoogleButton from '../components/GoogleButton'
 import DogGallery from '../components/DogGallery'
 
 const dogPhotos = ['dog-2.png', 'dog-3.png', 'dog-4.png']
 
+type InitialBanner = {
+  variant: 'oauth_cancelled' | 'oauth_failed' | 'unknown'
+  heading: string
+  message: string
+} | null
+
+function bannerFromError(code: string | null): InitialBanner {
+  if (!code) return null
+  if (code === 'oauth_cancelled' || code === 'google_cancelled') {
+    return {
+      variant: 'oauth_cancelled',
+      heading: 'Login com Google cancelado',
+      message: 'Você fechou a janela do Google. Tente de novo ou use seu e-mail.',
+    }
+  }
+  if (code === 'oauth_failed' || code === 'google_failed' || code === 'google') {
+    return {
+      variant: 'oauth_failed',
+      heading: 'Algo deu errado com o Google',
+      message: 'Não conseguimos completar o login. Tente outra vez ou use seu e-mail.',
+    }
+  }
+  return {
+    variant: 'unknown',
+    heading: 'Algo deu errado',
+    message: 'Tente novamente.',
+  }
+}
+
 export default function LoginPage() {
+  const [params, setParams] = useSearchParams()
+  const errorCode = params.get('error')
+  const [initialBanner] = useState<InitialBanner>(() => bannerFromError(errorCode))
+
+  // Strip the ?error= param from the URL once we've consumed it, so a refresh doesn't re-show the banner.
+  useEffect(() => {
+    if (!errorCode) return
+    const next = new URLSearchParams(params)
+    next.delete('error')
+    setParams(next, { replace: true })
+  }, [errorCode, params, setParams])
+
+  const banner = useMemo(() => initialBanner, [initialBanner])
+
   return (
     <main className="min-h-[100dvh] flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 gap-10 sm:gap-12">
       <section className="relative w-full max-w-[480px]">
@@ -25,7 +70,7 @@ export default function LoginPage() {
           </header>
 
           <div className="flex flex-col items-center">
-            <LoginForm />
+            <LoginForm initialBanner={banner} />
 
             <div className="my-5 flex items-center gap-3 w-full max-w-[440px] text-dark/60">
               <span className="h-px flex-1 bg-dark/20" />

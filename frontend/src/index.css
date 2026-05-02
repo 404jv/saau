@@ -35,3 +35,43 @@
   h1, h2, h3, h4 { font-family: var(--font-main); }
 }
 
+.saau-wavy {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='4' viewBox='0 0 10 4'><path d='M0 2 Q 2.5 0 5 2 T 10 2' stroke='%23FF3131' stroke-width='1.2' fill='none'/></svg>");
+  background-repeat: repeat-x;
+  background-position: left center;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes saau-banner-in {
+  from { opacity: 0; transform: translateY(-12px) rotate(-0.8deg); }
+  to   { opacity: 1; transform: translateY(0)    rotate(-0.8deg); }
+}
+
+@keyframes saau-banner-tape {
+  from { opacity: 0; transform: translate(-50%, -8px) rotate(3deg) scaleX(0.6); }
+  to   { opacity: 1; transform: translate(-50%, 0)    rotate(3deg) scaleX(1); }
+}
+
+@keyframes saau-field-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes saau-field-shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-3px); }
+  50%      { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[saau-banner-in_280ms_cubic-bezier\(\.34\,1\.56\,\.64\,1\)_both\],
+  .animate-\[saau-banner-tape_360ms_ease-out_80ms_both\],
+  .animate-\[saau-field-in_220ms_ease-out_both\],
+  .animate-\[fade-in_0\.25s_ease-out\] {
+    animation: none !important;
+  }
+}
