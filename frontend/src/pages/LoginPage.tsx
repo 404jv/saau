@@ -1,93 +1,58 @@
-import { useState } from 'react'
+import LoginForm from '../components/LoginForm'
+import GoogleButton from '../components/GoogleButton'
+import DogGallery from '../components/DogGallery'
 
-function LoginPage() {
-  const [isRegister, setIsRegister] = useState(false)
+const dogPhotos = ['dog-2.png', 'dog-3.png', 'dog-4.png']
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: integrate with backend
-  }
-
+export default function LoginPage() {
   return (
-    <div className="flex flex-col items-center py-8 sm:py-15 px-5 w-full max-w-[900px]">
-      <div className="flex items-center gap-2 mb-8">
-        <img src="/assets/info.svg" alt="Info" className="w-9 h-9" />
-        <h1 className="font-main text-2xl sm:text-[32px] text-red m-0">{isRegister ? 'CRIAR SUA CONTA' : 'ENTRAR NA SUA CONTA'}</h1>
-      </div>
+    <main className="min-h-[100dvh] flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 gap-10 sm:gap-12">
+      <section className="relative w-full max-w-[480px]">
+        <div className="absolute -top-4 left-8 w-28 h-6 bg-teal/70 rotate-[-6deg] rounded-sm shadow-sm" aria-hidden="true" />
+        <div className="absolute -top-3 right-10 w-20 h-6 bg-yellow/80 rotate-[5deg] rounded-sm shadow-sm" aria-hidden="true" />
 
-      <form className="w-full max-w-[440px] flex flex-col gap-5 mb-4" onSubmit={handleSubmit}>
-        {isRegister && (
-          <div className="flex flex-col gap-1.5">
-            <label htmlFor="name" className="text-lg font-bold text-dark">Nome:</label>
-            <input id="name" type="text" name="name" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
-          </div>
-        )}
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-lg font-bold text-dark">E-mail:</label>
-          <input id="email" type="email" name="email" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="password" className="text-lg font-bold text-dark">Senha:</label>
-          <input id="password" type="password" name="password" className="w-full py-3.5 px-4 border-2 border-dark rounded-[10px] bg-transparent text-dark font-main text-base outline-none transition-colors focus:border-red" />
-        </div>
-        <button type="submit" className="self-center mt-2 py-3.5 px-14 bg-red text-white border-none rounded-lg font-main text-lg cursor-pointer transition-opacity hover:opacity-85">ENVIAR</button>
-      </form>
+        <div className="relative bg-white border-2 border-dark rounded-3xl px-6 sm:px-9 py-7 sm:py-9 shadow-[10px_10px_0_var(--color-dark)]">
+          <header className="flex flex-col items-center gap-1 mb-5">
+            <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-dark/55 font-main text-center leading-tight">
+              Sociedade de Amparo aos Animais de Umuarama
+            </p>
+            <div className="flex items-center justify-center gap-3 mt-0.5">
+              <img src="/assets/info.svg" alt="" className="w-9 h-9" aria-hidden="true" />
+              <h1 className="font-main text-2xl sm:text-[28px] text-red m-0 leading-tight text-center">
+                ENTRAR NA SUA CONTA
+              </h1>
+            </div>
+          </header>
 
-      <p className="mt-2 text-lg text-dark text-center">
-        {isRegister ? (
-          <>
-            Ja tem conta?{' '}
-            <button onClick={() => setIsRegister(false)} className="bg-none border-none text-teal font-main text-sm cursor-pointer underline hover:text-yellow">Entre aqui.</button>
-          </>
-        ) : (
-          <>
-            Não tem conta?{' '}
-            <button onClick={() => setIsRegister(true)} className="bg-none border-none text-teal font-main text-sm cursor-pointer underline hover:text-yellow">Cadastre-se aqui.</button>
-          </>
-        )}
-      </p>
+          <div className="flex flex-col items-center">
+            <LoginForm />
 
-      <a className="flex items-center justify-center gap-2.5 mt-5 py-3 px-4 sm:px-8 bg-google text-white border-none rounded-lg font-main text-base cursor-pointer transition-opacity no-underline max-w-[440px] w-full hover:opacity-85" href="/api/v1/auth/google">
-        <svg viewBox="0 0 24 24" className="w-[22px] h-[22px] bg-white rounded-full p-0.5">
-          <path
-            fill="#4285F4"
-            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
-          />
-          <path
-            fill="#34A853"
-            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-          />
-          <path
-            fill="#FBBC05"
-            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A11.96 11.96 0 0 0 1 12c0 1.94.46 3.77 1.18 5.07l3.66-2.98z"
-          />
-          <path
-            fill="#EA4335"
-            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-          />
-        </svg>
-        Login com Google
-      </a>
+            <div className="my-5 flex items-center gap-3 w-full max-w-[440px] text-dark/60">
+              <span className="h-px flex-1 bg-dark/20" />
+              <span className="font-main text-xs tracking-widest">OU</span>
+              <span className="h-px flex-1 bg-dark/20" />
+            </div>
 
-      <div className="w-full flex flex-col items-center mt-8 sm:mt-15">
-        <div className="flex items-center mb-6">
-          <img src="/assets/chewing-bone-for-dog 1.svg" alt="" className="w-22 h-auto rotate-10" />
-          <h2 className="font-main text-xl sm:text-[28px] text-red">A GENTE TE AGUARDA</h2>
-        </div>
-        <div className="flex flex-wrap gap-4 sm:gap-6 justify-center">
-          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-teal">
-            <img src="/assets/dog-4.png" alt="Cachorro" className="w-full h-full object-cover" />
-          </div>
-          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-yellow">
-            <img src="/assets/dog-2.png" alt="Cachorro" className="w-full h-full object-cover" />
-          </div>
-          <div className="rounded-xl overflow-hidden border-[6px] w-[160px] h-[210px] sm:w-[220px] sm:h-[280px] border-purple">
-            <img src="/assets/dog-3.png" alt="Cachorro" className="w-full h-full object-cover" />
+            <GoogleButton />
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="w-full max-w-6xl flex flex-col items-center gap-6">
+        <div className="flex items-center justify-center gap-3 sm:gap-4">
+          <img
+            src="/assets/chewing-bone-for-dog 1.svg"
+            alt=""
+            className="w-20 sm:w-24 lg:w-28 h-auto rotate-[-10deg] drop-shadow-[4px_4px_0_rgba(30,30,30,0.1)]"
+            aria-hidden="true"
+          />
+          <h2 className="font-main text-3xl sm:text-4xl lg:text-[42px] text-red leading-none m-0">
+            A GENTE TE AGUARDA
+          </h2>
+        </div>
+
+        <DogGallery images={dogPhotos} />
+      </section>
+    </main>
   )
 }
-
-export default LoginPage
