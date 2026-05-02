@@ -2,9 +2,25 @@ import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import LoginForm from '../components/LoginForm'
 import GoogleButton from '../components/GoogleButton'
-import DogGallery from '../components/DogGallery'
+import DogGallery, { type GalleryItem } from '../components/DogGallery'
 
-const dogPhotos = ['dog-2.png', 'dog-3.png', 'dog-4.png']
+const galleryItems: GalleryItem[] = [
+  { src: '/assets/photos/dog-2.webp', alt: 'Cachorro disponível para adoção' },
+  { src: '/assets/photos/cat-1.webp', alt: 'Gato disponível para adoção' },
+  {
+    src: '/assets/photos/luna.webp',
+    alt: 'Luna',
+    flipMessage: {
+      heading: '✨ Você encontrou algo especial.',
+      body: 'Luna ainda corre por aí… só que agora entre as estrelas. 🐾',
+      hint: '',
+    },
+  },
+  { src: '/assets/photos/dog-3.webp', alt: 'Cachorro disponível para adoção' },
+  { src: '/assets/photos/cat-2.webp', alt: 'Gato disponível para adoção' },
+  { src: '/assets/photos/dog-4.webp', alt: 'Cachorro disponível para adoção' },
+  { src: '/assets/photos/cat-3.webp', alt: 'Gatinho disponível para adoção' },
+]
 
 type InitialBanner = {
   variant: 'oauth_cancelled' | 'oauth_failed' | 'unknown'
@@ -62,7 +78,7 @@ export default function LoginPage() {
               Sociedade de Amparo aos Animais de Umuarama
             </p>
             <div className="flex items-center justify-center gap-3 mt-0.5">
-              <img src="/assets/info.svg" alt="" className="w-9 h-9" aria-hidden="true" />
+              <img src="/assets/icons/info.svg" alt="" className="w-9 h-9" aria-hidden="true" />
               <h1 className="font-main text-2xl sm:text-[28px] text-red m-0 leading-tight text-center">
                 ENTRAR NA SUA CONTA
               </h1>
@@ -86,7 +102,7 @@ export default function LoginPage() {
       <section className="w-full max-w-6xl flex flex-col items-center gap-6">
         <div className="flex items-center justify-center gap-3 sm:gap-4">
           <img
-            src="/assets/chewing-bone-for-dog 1.svg"
+            src="/assets/icons/bone.svg"
             alt=""
             className="w-20 sm:w-24 lg:w-28 h-auto rotate-[-10deg] drop-shadow-[4px_4px_0_rgba(30,30,30,0.1)]"
             aria-hidden="true"
@@ -96,7 +112,7 @@ export default function LoginPage() {
           </h2>
         </div>
 
-        <DogGallery images={dogPhotos} />
+        <DogGallery items={galleryItems} />
       </section>
     </main>
   )
