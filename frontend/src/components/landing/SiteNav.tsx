@@ -13,17 +13,15 @@ const SECTIONS: Array<{ id: string; label: string }> = [
   { id: 'contato', label: 'Contato' },
 ]
 
-function PawMark({ className = '' }: { className?: string }) {
+function SaauMark({ className = '' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
-      <g fill="var(--color-red)">
-        <ellipse cx="16" cy="22" rx="6.5" ry="5" />
-        <ellipse cx="7.5" cy="14" rx="2.6" ry="3.6" transform="rotate(-18 7.5 14)" />
-        <ellipse cx="24.5" cy="14" rx="2.6" ry="3.6" transform="rotate(18 24.5 14)" />
-        <ellipse cx="12.5" cy="9" rx="2" ry="2.6" />
-        <ellipse cx="19.5" cy="9" rx="2" ry="2.6" />
-      </g>
-    </svg>
+    <img
+      src="/assets/icons/saau-logo.webp"
+      alt=""
+      aria-hidden="true"
+      className={`block object-contain ${className}`}
+      decoding="async"
+    />
   )
 }
 
@@ -89,7 +87,7 @@ export default function SiteNav() {
         <div className="bg-[color-mix(in_srgb,var(--color-paper)_92%,transparent)] backdrop-blur-md border-b border-dashed border-dark/20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 no-underline group" aria-label="SAAU, início">
-              <PawMark className="w-7 h-7 transition-transform duration-300 group-hover:rotate-[-10deg]" />
+              <SaauMark className="w-9 h-9 transition-transform duration-300 group-hover:rotate-[-10deg] group-hover:scale-105" />
               <span className="font-main text-base sm:text-lg text-dark tracking-[0.18em] uppercase">{siteConfig.name}</span>
             </Link>
 
@@ -161,7 +159,7 @@ export default function SiteNav() {
           <div className="relative h-full flex flex-col">
             <div className="h-14 sm:h-16 px-4 sm:px-6 flex items-center justify-between border-b border-dashed border-dark/20">
               <div className="flex items-center gap-2">
-                <PawMark className="w-7 h-7" />
+                <SaauMark className="w-9 h-9" />
                 <span className="font-main text-base sm:text-lg text-dark tracking-[0.18em] uppercase">{siteConfig.name}</span>
               </div>
               <button

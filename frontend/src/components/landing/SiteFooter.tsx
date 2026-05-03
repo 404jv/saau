@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SocialSticker from '../primitives/SocialSticker'
 import { siteConfig, whatsappLink } from '../../lib/site-config'
 
@@ -55,6 +56,11 @@ export default function SiteFooter() {
         <div className="border-t border-white/10">
           <p className="max-w-6xl mx-auto px-5 sm:px-8 py-4 text-center text-xs text-white/55 font-body m-0">
             © {year} {siteConfig.name} · Feito com 🐾 em {siteConfig.address.city}
+            {' · '}
+            em homenagem à{' '}
+            <Link to="/luna" className="text-white/75 hover:text-yellow transition-colors no-underline hover:underline underline-offset-2">
+              Luna&nbsp;♥
+            </Link>
           </p>
         </div>
       </div>

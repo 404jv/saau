@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import NotFoundPage from './pages/NotFoundPage'
 import BazarPage from './pages/BazarPage'
 import TutorVirtualPage from './pages/TutorVirtualPage'
+import LunaPage from './pages/LunaPage'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/bazar" element={<BazarPage />} />
       <Route path="/tutor-virtual" element={<TutorVirtualPage />} />
+      <Route path="/luna" element={<LunaPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
