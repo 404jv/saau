@@ -73,13 +73,13 @@ export default function LoginPage() {
         <div className="absolute -top-3 right-10 w-20 h-6 bg-yellow/80 rotate-[5deg] rounded-sm shadow-sm" aria-hidden="true" />
 
         <div className="relative bg-white border-2 border-dark rounded-3xl px-6 sm:px-9 py-7 sm:py-9 shadow-[10px_10px_0_var(--color-dark)]">
-          <header className="flex flex-col items-center gap-1 mb-5">
-            <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-dark/55 font-main text-center leading-tight">
+          <header className="flex flex-col items-center gap-2 mb-6">
+            <p className="text-xs sm:text-sm uppercase tracking-[0.22em] text-dark/55 font-main text-center leading-tight">
               Sociedade de Amparo aos Animais de Umuarama
             </p>
             <div className="flex items-center justify-center gap-3 mt-0.5">
-              <img src="/assets/icons/info.svg" alt="" className="w-9 h-9" aria-hidden="true" />
-              <h1 className="font-main text-2xl sm:text-[28px] text-red m-0 leading-tight text-center">
+              <img src="/assets/icons/info.svg" alt="" className="w-10 h-10 sm:w-11 sm:h-11" aria-hidden="true" />
+              <h1 className="font-main text-3xl sm:text-4xl text-red m-0 leading-tight text-center">
                 ENTRAR NA SUA CONTA
               </h1>
             </div>
